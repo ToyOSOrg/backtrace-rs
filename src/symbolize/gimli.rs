@@ -247,6 +247,9 @@ cfg_if::cfg_if! {
     } else if #[cfg(target_os = "aix")] {
         mod libs_aix;
         use libs_aix::native_libraries;
+    } else if #[cfg(target_os = "toyos")] {
+        mod libs_toyos;
+        use libs_toyos::native_libraries;
     } else {
         // Everything else should doesn't know how to load native libraries.
         fn native_libraries() -> Vec<Library> {

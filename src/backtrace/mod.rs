@@ -186,6 +186,10 @@ cfg_if::cfg_if! {
         mod libunwind;
         use self::libunwind::trace as trace_imp;
         pub(crate) use self::libunwind::Frame as FrameImp;
+    } else if #[cfg(target_os = "toyos")] {
+        mod toyos;
+        use self::toyos::trace as trace_imp;
+        pub(crate) use self::toyos::Frame as FrameImp;
     } else if #[cfg(all(windows, not(target_vendor = "uwp")))] {
         cfg_if::cfg_if! {
             if #[cfg(any(target_arch = "x86_64", target_arch = "aarch64", target_arch = "arm64ec"))] {
