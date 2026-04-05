@@ -3,7 +3,10 @@
 use super::Either;
 use super::mystd::ffi::OsStr;
 use super::mystd::fs;
+#[cfg(not(target_os = "toyos"))]
 use super::mystd::os::unix::ffi::OsStrExt;
+#[cfg(target_os = "toyos")]
+use super::mystd::os::toyos::ffi::OsStrExt;
 use super::mystd::path::{Path, PathBuf};
 use super::{Context, Endian, EndianSlice, Mapping, Stash, gimli};
 use alloc::string::String;
